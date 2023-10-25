@@ -11,6 +11,12 @@ import ContactBook from "@/views/ContactBook.vue";
             name: "notfound",
             component: () => import("@/views/NotFound.vue"),
         },
+        {
+            path: "/contacts/:id",
+            name: "contact.edit",
+            component: () => import("@/views/ContactEdit.vue"),
+            props: true,
+        },
     ];
     const router = createRouter({
         history: createWebHistory(import.meta.env.BASE_URL),
