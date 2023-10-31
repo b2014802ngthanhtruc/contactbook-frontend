@@ -17,6 +17,12 @@ import ContactBook from "@/views/ContactBook.vue";
             component: () => import("@/views/ContactEdit.vue"),
             props: true,
         },
+        {
+            path: "/contacts/",
+            name: "contact.add",
+            component: () => import("@/views/ContactCreate.vue"),
+           
+        },
     ];
     const router = createRouter({
         history: createWebHistory(import.meta.env.BASE_URL),

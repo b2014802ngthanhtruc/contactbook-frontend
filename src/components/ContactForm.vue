@@ -2,51 +2,81 @@
     <form @submit="submitContact" :validation-schema="contactFormSchema">
         <div class="form-group">
             <label for="name">Tên</label>
-            <field
+            <field v-if="contactLocal"
                 name="name"
                 type="text"
                 class="form-control"
                 v-model="contactLocal.name"
             />
+            <field v-else
+                name="name"
+                type="text"
+                class="form-control"
+                autocomplete="name"
+            />
             <ErrorMessage name="name" class="error-feedback" />
         </div>
         <div class="form-group">
             <label for="email">Email</label>
-            <field
+            <field v-if="contactLocal"
                 name="email"
                 type="email"
                 class="form-control"
                 v-model="contactLocal.email"
             />
+            <field v-else
+                name="email"
+                type="email"
+                class="form-control"
+                autocomplete="email"
+            />
             <ErrorMessage name="email" class="error-feedback" />
         </div>
         <div class="form-group">
             <label for="address">Địa chỉ</label>
-            <field
+            <field v-if="contactLocal"
                 name="address"
                 type="text"
                 class="form-control"
                 v-model="contactLocal.address"
             />
+            <field v-else
+                name="address"
+                type="text"
+                class="form-control"
+                autocomplete="address"
+            />
             <ErrorMessage name="address" class="error-feedback" />
         </div>
         <div class="form-group">
             <label for="phone">Điện thoại</label>
-            <field
+            <field v-if="contactLocal"
                 name="phone"
                 type="tel"
                 class="form-control"
                 v-model="contactLocal.phone"
             />
+            <field v-else
+                name="phone"
+                type="tel"
+                class="form-control"
+                autocomplete="phone"
+            />
             <ErrorMessage name="phone" class="error-feedback" />
         </div>
 
         <div class="form-group form-check">
-            <input 
+            <input v-if="contactLocal"
                 name="favorite"
                 type="checkbox"
                 class="form-check-input"
                 v-model="contactLocal.favorite"
+            />
+            <input v-else
+                name="favorite"
+                type="checkbox"
+                class="form-check-input"
+                autocomplete="favorite"
             />
             <label for="favorite" class="form-check-label">
                 <strong>Liên hệ yêu thích</strong>
@@ -56,7 +86,7 @@
         <div class="form-group">
             <button class="btn btn-primary">Lưu</button>
             <button
-                v-if="contactLocal._id"
+                v-if="contactLocal"
                 type="button"
                 class="ml-2 btn btn-danger"
                 @click="deleteContact"
@@ -79,7 +109,7 @@ export default {
     },
     emits: ["submit:contact", "delete:contact"],
     props: {
-        contact: { type: Object, required: true}
+        contact: { type: Object}
     },
     data() {
         const contactFormSchema = yup.object().shape({
