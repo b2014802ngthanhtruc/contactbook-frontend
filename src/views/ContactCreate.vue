@@ -1,6 +1,6 @@
 <template>
     <div class="page">
-        <h4>Hiệu chỉnh Liên hệ</h4>
+        <h4>Thêm liên hệ mới</h4>
         <ContactForm
             :contact="contact"
             @submit:contact="createContact"
